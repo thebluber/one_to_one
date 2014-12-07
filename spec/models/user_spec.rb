@@ -10,6 +10,11 @@ RSpec.describe User, :type => :model do
   it { should have_one(:student) }
   it { should have_one(:mentor) }
 
+  describe "email uniqueness" do
+    subject { create(:user) }
+    it { should validate_uniqueness_of(:email) }
+  end
+
   describe "valide user" do
     subject { create(:user) }
     it { should have_attributes(first_name: "John") }
@@ -28,6 +33,17 @@ RSpec.describe User, :type => :model do
       user.destroy
       expect(Student.find_by(user_id: id)).to be_nil
       expect(Mentor.find_by(user_id: id)).to be_nil
+    end
+  end
+
+  describe "user name" do
+    let(:user) { create(:user) }
+    it "should return user's fullname" do
+      expect(user.name).to eql "John Doe"
+      user.first_name = "john"
+      user.last_name = "doe"
+      user.save
+      expect(user.name).to eql "John Doe"
     end
   end
 end

@@ -9,10 +9,15 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name
   validates_presence_of :last_name
   validates_presence_of :email
-  validates_presence_of :password
+  validates_uniqueness_of :email
+  validates_presence_of :password, :on => :create
 
   after_create   :create_accounts
   before_destroy :destroy_accounts
+
+  def name
+    first_name.capitalize + " " + last_name.capitalize
+  end
 
   private
   def create_accounts
