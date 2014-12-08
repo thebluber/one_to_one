@@ -15,6 +15,7 @@ RSpec.describe UsersController, :type => :controller do
       expect(User.first.first_name).to eql "Lala"
       expect(User.first.last_name).to eql "Lulu"
       expect(User.first.email).to eql "lala.lulu@uni-tuebingen.de"
+      expect(assigns[:current_user]).to eql User.first
     end
   end
 
