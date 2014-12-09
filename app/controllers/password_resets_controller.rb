@@ -1,5 +1,9 @@
 #encoding: utf-8
 class PasswordResetsController < ApplicationController
+  def new
+    render :new
+  end
+
   def create
     @user = User.find_by_email(params[:email])
     @user.deliver_reset_password_instructions! if @user

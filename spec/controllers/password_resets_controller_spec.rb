@@ -2,6 +2,13 @@ require 'rails_helper'
 
 RSpec.describe PasswordResetsController, :type => :controller do
   let!(:user){ create(:user) }
+  describe "GET new" do
+    it "should render template new" do
+      get :new
+      expect(response).to render_template("new")
+    end
+  end
+
   describe "GET edit" do
     it "should render edit template if there's a user with given token" do
       User.stub(:load_from_reset_password_token).with("1").and_return(user)
