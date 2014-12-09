@@ -1,0 +1,16 @@
+<%= form_tag user_sessions_path, {:role => 'form', :method => :post} do %>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <%= email_field_tag :email, params[:email], {class:'form-control', id: 'email'} %>
+  </div>
+  <div class="form-group">
+    <label for="password">Passwort</label>
+    <%= password_field_tag :password, nil, {class:'form-control', id: 'password'} %>
+  </div>
+  <div class="checkbox">
+    <label>
+      <%= check_box_tag :remember%>Angemeldet bleiben
+    </label>
+  </div>
+  <%= submit_tag "Anmelden", {class: 'btn btn-default'} %>
+<% end %>

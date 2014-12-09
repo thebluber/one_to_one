@@ -1,0 +1,8 @@
+<%= form_tag password_resets_path, {:role => 'form', :method => :post} do %>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <%= email_field_tag :email, params[:email], {class:'form-control', id: 'email'} %>
+  </div>
+  <%= submit_tag "Passwort zurücksetzen", {class: 'btn btn-default'} %>
+<% end %>
+<%= link_to 'Home', root_path %>

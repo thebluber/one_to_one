@@ -1,0 +1,16 @@
+<div class="form-group">
+  <label for="firstname">Vorname</label>
+  <%= f.text_field :first_name, {class:'form-control', id: 'firstname'} %>
+</div>
+<div class="form-group">
+  <label for="lastname">Nachname</label>
+  <%= f.text_field :last_name, {class:'form-control', id: 'lastname'} %>
+</div>
+<div class="form-group">
+  <label for="email">Email</label>
+  <%= f.email_field :email, {class:'form-control', id: 'email', placeholder: 'max.muster@student.uni-tuebingen.de'} %>
+</div>
+<div class="form-group">
+  <label for="password">Passwort</label>
+  <%= f.password_field :password, {class:'form-control', id: 'password'} %>
+</div>

@@ -1,0 +1,14 @@
+<h1>Anmelden</h1>
+<% if @user.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% for message in @user.errors.full_messages %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_for(@user, {:role => 'form'}) do |f| %>
+  <%= render partial: 'user_form', locals: {f: f} %>
+  <%= f.submit "Anmelden", {class: 'btn btn-default'} %>
+<% end %>
