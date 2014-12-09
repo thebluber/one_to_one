@@ -1,5 +1,5 @@
 module ApplicationHelper
-  def flash_message
+  def flash_message flash
     flash.map do |key, msg|
       if key == "alert" || key == "error"
         content_tag :div, msg, :class => 'alert alert-danger'
