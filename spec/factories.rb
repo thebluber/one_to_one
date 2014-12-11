@@ -18,12 +18,12 @@ FactoryGirl.define do
     student
   end
 
-  factory :active_course do
+  factory :active_course, class: Course do
     sequence(:title) { |n| "Info#{n}" }
     active true
   end
 
-  factory :inactive_course do
+  factory :inactive_course, class: Course do
     sequence(:title) { |n| "Mathe#{n}" }
     active false
   end
