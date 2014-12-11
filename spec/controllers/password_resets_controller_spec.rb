@@ -1,3 +1,4 @@
+#encoding: utf-8
 require 'rails_helper'
 
 RSpec.describe PasswordResetsController, :type => :controller do
@@ -31,6 +32,12 @@ RSpec.describe PasswordResetsController, :type => :controller do
       expect(ActionMailer::Base.deliveries.last.to[0]).to eql user.email
       expect(ActionMailer::Base.deliveries.last.body).to match user.reset_password_token
     end
+
+    it "should render new template in case of invalid email" do
+      post :create, email: "123@123.de"
+      expect(response).to render_template("new")
+      expect(flash[:error]).to eql "Ungültige Email Adresse!"
+    end
   end
 
   describe "PUT update" do
@@ -52,6 +59,13 @@ RSpec.describe PasswordResetsController, :type => :controller do
       expect(response).to redirect_to root_url
       expect(old_pw).to eql user.crypted_password
       expect(salt).to eql user.salt
+    end
+
+    it "should not save blank password" do
+      User.stub(:load_from_reset_password_token).with("1").and_return(user)
+      put :update, id: "1", user: {password: " "}
+      expect(response).to render_template("edit")
+      expect(flash[:error]).not_to be_blank
     end
   end
 end

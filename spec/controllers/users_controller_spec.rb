@@ -17,6 +17,11 @@ RSpec.describe UsersController, :type => :controller do
       expect(User.first.email).to eql "lala.lulu@uni-tuebingen.de"
       expect(assigns[:current_user]).to eql User.first
     end
+
+    it "should render new template in case of invalid user data" do
+      post :create, user: {first_name: "Lala", last_name: "Lulu"}
+      expect(response).to render_template("new")
+    end
   end
 
 end
