@@ -30,6 +30,7 @@ class PasswordResetsController < ApplicationController
       if @user.change_password!(params[:user][:password])
         redirect_to(root_path, :notice => 'Password was successfully updated.')
       else
+        flash.now[:error] = @user.errors.full_messages.join(" ")
         render :edit
       end
     end
