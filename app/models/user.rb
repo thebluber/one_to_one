@@ -10,7 +10,12 @@ class User < ActiveRecord::Base
   validates_presence_of :last_name
   validates_presence_of :email
   validates_uniqueness_of :email
-  validates_presence_of :password, :on => :create
+  validates_presence_of :password, on: :create, allow_blank: false
+  validates_length_of :password, minimum: 4, maximum: 12
+  validates_format_of :password,
+    with: /\A\w\w*\z/i,
+    message: "Passwort enthält ungültige Zeichen"
+
 
   after_create   :create_accounts
   before_destroy :destroy_accounts

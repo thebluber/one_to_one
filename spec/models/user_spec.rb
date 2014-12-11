@@ -5,6 +5,9 @@ RSpec.describe User, :type => :model do
   it { should validate_presence_of(:last_name) }
   it { should validate_presence_of(:email) }
   it { should validate_presence_of(:password) }
+  it { should ensure_length_of(:password).is_at_least(4) }
+  it { should ensure_length_of(:password).is_at_most(12) }
+  it { should_not allow_value("    ", " 12345", "12345 ", "12  3434").for(:password).with_message("Passwort enthält ungültige Zeichen")}
   it { should allow_value("bla@student.uni-tuebingen.de", "bla@uni-tuebingen.de", "bla@bla.uni-tuebingen.de").for(:email).with_message("Nur Email-Adressen der Universität werden akzeptiert") }
   it { should_not allow_value("bla@gmail.com", "bla@hotmail.com").for(:email) }
   it { should have_one(:student) }
@@ -13,6 +16,16 @@ RSpec.describe User, :type => :model do
   describe "email uniqueness" do
     subject { create(:user) }
     it { should validate_uniqueness_of(:email) }
+  end
+
+  describe "blank password" do
+    let(:user) { create(:user) }
+    it "should not allow blank password" do
+      user.password = ""
+      expect(user.save).to eql false
+      user.password = "    "
+      expect(user.save).to eql false
+    end
   end
 
   describe "valide user" do
