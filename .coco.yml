@@ -1,0 +1,6 @@
+:directories:
+- app
+:excludes:
+- spec
+- config/initializers
+:single_line_report: false
