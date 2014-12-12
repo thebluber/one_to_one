@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   resources :user_sessions
   resources :password_resets
 
+  namespace :admin do
+    resources :courses
+  end
+
   # Example resource route with options:
   #   resources :products do
   #     member do
