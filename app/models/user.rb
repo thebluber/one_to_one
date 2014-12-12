@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_one :student
   has_one :mentor
+  has_one :admin
   authenticates_with_sorcery!
   validates_format_of :email,
     with: /.*@.*\.?uni-tuebingen\.de/i,
@@ -24,14 +25,26 @@ class User < ActiveRecord::Base
     first_name.capitalize + " " + last_name.capitalize
   end
 
+  def make_admin!
+    self.admin = Admin.create(user_id: id) if self.admin.nil?
+  end
+
+  def admin?
+    !self.admin.nil?
+  end
+
+  def destroy_admin!
+    self.admin.destroy if admin?
+  end
   private
   def create_accounts
-    student = Student.create(user_id: id)
-    mentor = Mentor.create(user_id: id)
+    self.student = Student.create(user_id: id)
+    self.mentor = Mentor.create(user_id: id)
   end
 
   def destroy_accounts
-    student.destroy
-    mentor.destroy
+    self.student.destroy
+    self.mentor.destroy
+    destroy_admin!
   end
 end

@@ -14,6 +14,16 @@ FactoryGirl.define do
     user
   end
 
+  factory :admin_user, class: User do
+    first_name "admin"
+    last_name "admin"
+    sequence(:email) { |n| "#{first_name}.#{last_name + n.to_s}@student.uni-tuebingen.de".downcase }
+    password "12345678"
+    after(:create) do |user, evaluator|
+      user.make_admin!
+    end
+  end
+
   factory :course_bucket do
     student
   end

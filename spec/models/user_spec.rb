@@ -12,6 +12,7 @@ RSpec.describe User, :type => :model do
   it { should_not allow_value("bla@gmail.com", "bla@hotmail.com").for(:email) }
   it { should have_one(:student) }
   it { should have_one(:mentor) }
+  it { should have_one(:admin) }
 
   describe "email uniqueness" do
     subject { create(:user) }
@@ -57,6 +58,29 @@ RSpec.describe User, :type => :model do
       user.last_name = "doe"
       user.save
       expect(user.name).to eql "John Doe"
+    end
+  end
+
+  describe "admin account" do
+    let(:user) { create(:user) }
+    it "should make user to an admin" do
+      user.make_admin!
+      expect(user.admin).not_to be_nil
+      user.make_admin!
+      expect(Admin.where(user_id: user.id).size).to eql 1
+    end
+
+    it "should return true if user has an admin account" do
+      expect(user.admin?).to eql false
+      user.make_admin!
+      expect(user.admin?).to eql true
+    end
+
+    it "should destroy user's admin account" do
+      user.make_admin!
+      user.destroy_admin!
+      user.reload
+      expect(user.admin).to be_nil
     end
   end
 end
