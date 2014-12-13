@@ -4,7 +4,7 @@ module ApplicationHelper
       if key == "alert" || key == "error"
         content_tag :div, msg, :class => 'alert alert-danger'
       else
-        content_tag :div, msg, :class => 'alert'
+        content_tag :div, msg, :class => 'alert alert-info'
       end
     end.join.html_safe
   end
