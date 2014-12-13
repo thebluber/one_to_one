@@ -1,0 +1,12 @@
+<%= form_for [:admin, @course], {:role => 'form'} do |f| %>
+  <div class="form-group">
+    <label for="title">Titel</label>
+    <%= f.text_field :title, {class:'form-control', id: 'title'} %>
+  </div>
+  <div class="checkbox">
+    <label>
+      <%= f.check_box :active%> aktuell
+    </label>
+  </div>
+  <%= submit_tag "Senden", {class: 'btn btn-default'} %>
+<% end %>

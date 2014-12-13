@@ -1,0 +1,6 @@
+$("#<%= @course.id %>").remove();
+<% if @course.active %>
+  $("#active").append("<%= escape_javascript(render(partial: @course, locals: {course: @course, button: 'Deaktivieren'})) %>");
+<% else %>
+  $("#inactive").append("<%= escape_javascript(render(partial: @course, locals: {course: @course, button: 'Aktivieren'})) %>");
+<% end %>

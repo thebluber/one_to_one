@@ -1,0 +1,12 @@
+<div id="active">
+  <h1>Aktuelle Kurse</h1>
+  <% @active_courses.each do |course| %>
+    <%= render partial: "course", locals: { course: course, button: "Deaktivieren" } %>
+  <% end %>
+</div>
+<div id="inactive">
+  <h1>Andere Kurse</h1>
+  <% @inactive_courses.each do |course| %>
+    <%= render partial: "course", locals: { course: course, button: "Aktivieren" } %>
+  <% end %>
+</div>
