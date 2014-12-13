@@ -18,14 +18,14 @@ class PasswordResetsController < ApplicationController
   def edit
     @user = User.load_from_reset_password_token(params[:id])
     @token = params[:id]
-    not_authenticated("Reset Password Token nicht gültig!") if !@user
+    redirect_to root_path, :alert => "Reset Password Token nicht gültig!" if !@user
   end
 
   def update
     @token = params[:id] # needed to render the form again in case of error
     @user = User.load_from_reset_password_token(@token)
     unless @user
-      not_authenticated("Reset Password Token nicht gültig!")
+      redirect_to root_path, :alert => "Reset Password Token nicht gültig!"
     else
       if @user.change_password!(params[:user][:password])
         redirect_to(root_path, :notice => 'Password was successfully updated.')

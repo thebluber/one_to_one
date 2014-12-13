@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   protected
-  def not_authenticated(msg="Bitte loggen Sie sich ein!")
-    redirect_to root_path, :alert => msg
+  def not_authenticated
+    redirect_to root_path, :alert => "Bitte loggen Sie sich ein!"
   end
 end
