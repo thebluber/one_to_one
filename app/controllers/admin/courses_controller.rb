@@ -1,5 +1,4 @@
 class Admin::CoursesController < Admin::AdminController
-  before_filter :require_login
   def index
     @active_courses = Course.where(active: true)
     @inactive_courses = Course.where(active: false)
