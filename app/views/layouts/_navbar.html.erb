@@ -1,0 +1,27 @@
+<%= nav_bar :static => :top, :brand => "One2One", :responsive => true, :inverse => true, :role => "navigation" do %>
+  <%= menu_group do %>
+    <%= menu_item "Home", root_path %>
+    <%= menu_item "Kontakt", root_path %>
+    <% if logged_in? %>
+      <%= menu_item "Mentor", courses_path %>
+      <%= drop_down "Student" do %>
+        <% current_user.student.course_buckets.each do |bucket| %>
+          <%= menu_item bucket.semester, course_bucket_path(bucket.id) %>
+        <% end %>
+      <% end %>
+      <% if current_user.admin? %>
+        <%= drop_down "Admin" do %>
+          <%= menu_item "Kurseverwaltung", admin_courses_path %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= menu_group :pull => :right do %>
+    <% if logged_in? %>
+      <%= menu_item "#{current_user.email} abmelden", logout_path %>
+    <% else %>
+      <%= menu_item "Registrieren", new_user_path %>
+      <%= menu_item "Anmelden", login_path  %>
+    <% end %>
+  <% end %>
+<% end %>
