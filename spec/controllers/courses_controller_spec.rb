@@ -26,7 +26,7 @@ RSpec.describe CoursesController, :type => :controller do
 
     it "should redirect to index if failed" do
       post :make_mentorship, user_id: user.id, id: "1234"
-      expect(response).to redirect_to user_courses_path
+      expect(response).to redirect_to courses_path
       expect(flash[:alert]).not_to be_nil
     end
   end
@@ -44,7 +44,7 @@ RSpec.describe CoursesController, :type => :controller do
 
     it "should redirect to index if course not found" do
       delete :destroy_mentorship, user_id: user.id, id: "1234"
-      expect(response).to redirect_to user_courses_path
+      expect(response).to redirect_to courses_path
       expect(flash[:alert]).not_to be_nil
     end
   end

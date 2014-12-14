@@ -1,2 +1,20 @@
-<h1>Courses#index</h1>
-<p>Find me in app/views/courses/index.html.erb</p>
+<div id="user_courses">
+<h1>Ich biete folgende Kurse an:</h1>
+<% @user_courses.each do |course| %>
+  <%= render partial: "course", locals: {
+    course: course,
+    url: destroy_mentorship_course_path(course),
+    method: :delete,
+    button: "Nicht mehr anbieten" } %>
+<% end %>
+</div>
+<div id="other_courses">
+<h1>Andere Kurse</h1>
+<% @other_courses.each do |course| %>
+  <%= render partial: "course", locals: {
+    course: course,
+    url: make_mentorship_course_path(course),
+    method: :post,
+    button: "Anbieten" } %>
+<% end %>
+</div>

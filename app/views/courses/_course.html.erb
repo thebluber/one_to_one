@@ -1,0 +1,13 @@
+<div id=<%= course.id %> class="row">
+  <div class="col-xs-12 col-md-8">
+    <%= course.title %>
+    <% if course.active %>
+      <span class="label label-info">aktuell</span>
+    <% end %>
+  </div>
+  <div class="col-xs-6 col-md-4">
+    <%= form_for course, url: url, method: method, remote: true, html: { class: "ajax_form" } do |f| %>
+      <%= f.submit button, class: "btn" %>
+    <% end %>
+  </div>
+</div>

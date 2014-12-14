@@ -1,0 +1,6 @@
+$("#<%= @course.id %>").remove();
+$("#user_courses").append("<%= escape_javascript(render(partial: @course, locals: {
+  course: @course,
+  url: destroy_mentorship_course_path(@course),
+  method: :delete,
+  button: 'Nicht mehr anbieten'})) %>");

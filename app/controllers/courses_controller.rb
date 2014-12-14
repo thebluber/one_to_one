@@ -10,9 +10,12 @@ class CoursesController < ApplicationController
     @course = Course.find_by_id(params[:id])
     if @course
       current_user.mentor.courses << @course
-      redirect_to user_courses_path(current_user.id), notice: "Mentorship erfolgreich etabliert."
+      respond_to do |format|
+        format.html { redirect_to courses_path, notice: "Mentorship erfolgreich etabliert." }
+        format.js {}
+      end
     else
-      redirect_to user_courses_path(current_user.id), alert: "Kurs nicht vorhanden!"
+      redirect_to courses_path, alert: "Kurs nicht vorhanden!"
     end
   end
 
@@ -20,9 +23,12 @@ class CoursesController < ApplicationController
     @course = current_user.mentor.courses.find_by_id(params[:id])
     if @course
       current_user.mentor.courses.delete(@course)
-      redirect_to user_courses_path(current_user.id), notice: "Mentorship erfolgreich gelöscht."
+      respond_to do |format|
+        format.html { redirect_to courses_path, notice: "Mentorship erfolgreich gelöscht." }
+        format.js {}
+      end
     else
-      redirect_to user_courses_path(current_user.id), alert: "Kurs nicht vorhanden!"
+      redirect_to courses_path, alert: "Kurs nicht vorhanden!"
     end
   end
 end
