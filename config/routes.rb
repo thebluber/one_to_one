@@ -17,7 +17,14 @@ Rails.application.routes.draw do
   match 'login' => 'user_sessions#new', :as => :login, :via => :get
   match 'logout' => 'user_sessions#destroy', :as => :logout, :via => :get
 
-  resources :users
+  resources :users do
+    resources :courses do
+      member do
+        post 'make_mentorship'
+        delete 'destroy_mentorship'
+      end
+    end
+  end
   resources :user_sessions
   resources :password_resets
 
