@@ -30,6 +30,12 @@ Rails.application.routes.draw do
       delete 'destroy_mentorship'
     end
   end
+  resources :course_buckets do
+    member do
+      post 'make_bucketship'
+      delete 'destroy_bucketship'
+    end
+  end
 
   # Example resource route with options:
   #   resources :products do

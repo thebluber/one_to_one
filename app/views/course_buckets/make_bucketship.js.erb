@@ -1,0 +1,6 @@
+$("#<%= @course.id %>").remove();
+$("#course_bucket").append("<%= escape_javascript(render(partial: @course, locals: {
+  course: @course,
+  url: destroy_bucketship_course_bucket_path(@bucket),
+  method: :delete,
+  button: 'Entfernen'})) %>");

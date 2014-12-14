@@ -1,0 +1,20 @@
+<div id="course_bucket">
+  <h1>Meine Kursliste <%= @bucket.semester %></h1>
+  <% @bucket.courses.each do |course| %>
+    <%= render partial: "course", locals: {
+      course: course,
+      url: destroy_bucketship_course_bucket_path(@bucket.id),
+      method: :delete,
+      button: "Entfernen" } %>
+  <% end %>
+</div>
+<div id="courses">
+  <h1>Kursangebot</h1>
+  <% @courses.each do |course| %>
+    <%= render partial: "course", locals: {
+      course: course,
+      url: make_bucketship_course_bucket_path(@bucket.id),
+      method: :post,
+      button: "Hinzufügen" } %>
+  <% end %>
+</div>

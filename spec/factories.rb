@@ -16,6 +16,14 @@ FactoryGirl.define do
     end
   end
 
+  factory :student do
+    user
+  end
+
+  factory :course_bucket do
+    student
+  end
+
   factory :active_course, class: Course do
     sequence(:title) { |n| "Info#{n}" }
     active true
