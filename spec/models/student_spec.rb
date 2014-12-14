@@ -7,4 +7,11 @@ RSpec.describe Student, :type => :model do
     user = create(:user)
     expect(user.student.course_buckets.count).to eql 1
   end
+
+  it "should return current course bucket of user" do
+    user = create(:user)
+    bucket = create(:course_bucket, student: user.student)
+    expect(user.student.course_buckets.count).to eql 2
+    expect(user.student.current_course_bucket).to eql bucket
+  end
 end
