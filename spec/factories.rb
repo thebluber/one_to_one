@@ -6,14 +6,6 @@ FactoryGirl.define do
     password "12345678"
   end
 
-  factory :student do
-    user
-  end
-
-  factory :mentor do
-    user
-  end
-
   factory :admin_user, class: User do
     first_name "admin"
     last_name "admin"
@@ -22,10 +14,6 @@ FactoryGirl.define do
     after(:create) do |user, evaluator|
       user.make_admin!
     end
-  end
-
-  factory :course_bucket do
-    student
   end
 
   factory :active_course, class: Course do
