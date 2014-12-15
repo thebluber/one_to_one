@@ -8,4 +8,8 @@ module ApplicationHelper
       end
     end.join.html_safe
   end
+
+  def icon name, size
+    "<i class='fa fa-#{name} fa-#{size}'></i>".html_safe
+  end
 end

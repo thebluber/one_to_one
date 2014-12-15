@@ -7,4 +7,11 @@ RSpec.describe ApplicationHelper, :type => :helper do
       expect(helper.flash_message(flash)).to eql html_content
     end
   end
+
+  describe "#icon" do
+    it "should generate html content for icon" do
+      icon = "<i class='fa fa-users fa-3'></i>"
+      expect(helper.icon("users", 3)).to eql icon
+    end
+  end
 end
