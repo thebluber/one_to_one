@@ -19,6 +19,19 @@ RSpec.describe Admin::CoursesController, :type => :controller do
     end
   end
 
+  describe "GET show" do
+    let(:course){ create(:active_course) }
+    it "should render show template" do
+      get :show, id: course.id
+      expect(response).to render_template("show")
+    end
+
+    it "should redirect to index" do
+      get :show, id: "1234"
+      expect(response).to redirect_to admin_courses_path
+    end
+  end
+
   describe "GET edit" do
     let(:course){ create(:active_course) }
     it "should render edit template" do

@@ -5,6 +5,17 @@ class Admin::CoursesController < Admin::AdminController
     render :index
   end
 
+  def show
+    @course = Course.find_by_id(params[:id])
+    if @course
+      @mentors = @course.mentors.map(&:user)
+      @students = @course.students.map(&:user)
+      render :show
+    else
+      redirect_to admin_courses_path, alert: "Kurs nicht vorhanden."
+    end
+  end
+
   def edit
     @course = Course.find_by_id(params[:id])
     if @course

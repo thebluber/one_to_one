@@ -1,6 +1,7 @@
 <div id=<%= course.id %> class="row">
-  <div class="col-xs-12 col-md-8"><%= link_to course.title, edit_admin_course_path(course) %></div>
-  <div class="col-xs-6 col-md-4">
+  <div class="col-xs-12 col-md-8"><%= link_to course.title, admin_course_path(course) %></div>
+  <div class="col-xs-6 col-md-4 btn-group">
+    <%= link_to "Editieren", edit_admin_course_path(course), class: "btn" %>
     <%= form_for [:admin, course], method: :put, remote: true, html: { class: "ajax_form" } do |f| %>
       <%= f.hidden_field :active, value: (!course.active).to_s %>
       <%= f.submit button, class: "btn" %>
