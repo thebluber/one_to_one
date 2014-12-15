@@ -7,21 +7,36 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 if Rails.env == "development"
-  User.create(first_name: 'John', last_name: 'Doe', email: 'john.doe@student.uni-tuebingen.de', password: '123456')
-  User.create(first_name: 'Jane', last_name: 'Doe', email: 'jane.doe@student.uni-tuebingen.de', password: '123456')
-  User.create(first_name: 'Harry', last_name: 'Potter', email: 'harry.potter@student.uni-tuebingen.de', password: '123456')
+  users = [ User.create(first_name: 'John', last_name: 'Doe', email: 'john.doe@student.uni-tuebingen.de', password: '123456'),
+            User.create(first_name: 'Jane', last_name: 'Doe', email: 'jane.doe@student.uni-tuebingen.de', password: '123456'),
+            User.create(first_name: 'Harry', last_name: 'Potter', email: 'harry.potter@student.uni-tuebingen.de', password: '123456') ]
 
 
-  #active courses
-  Course.create(title: 'InformatikI', active: true)
-  Course.create(title: 'MathematikI', active: true)
-  Course.create(title: 'Einführung in die technische Informatik', active: true)
-  Course.create(title: 'Praktikum ETI', active: true)
-  Course.create(title: 'Informatik der Systeme', active: true)
-  #inactive courses
-  Course.create(title: 'InformatikII', active: false)
-  Course.create(title: 'InformatikIII', active: false)
-  Course.create(title: 'MathematikII', active: false)
-  Course.create(title: 'MathematikIII', active: false)
-  Course.create(title: 'DatenbanksystemI', active: false)
+  courses = [
+    #active courses
+    Course.create(title: 'InformatikI', active: true),
+    Course.create(title: 'MathematikI', active: true),
+    Course.create(title: 'Einführung in die technische Informatik', active: true),
+    Course.create(title: 'Praktikum ETI', active: true),
+    Course.create(title: 'Informatik der Systeme', active: true),
+    #inactive courses
+    Course.create(title: 'InformatikII', active: false),
+    Course.create(title: 'InformatikIII', active: false),
+    Course.create(title: 'MathematikII', active: false),
+    Course.create(title: 'MathematikIII', active: false),
+    Course.create(title: 'DatenbanksystemI', active: false)
+  ]
+
+  users.first.make_admin!
+  users.map do |user|
+    old_bucket = user.student.course_buckets.create
+    old_bucket.semester = "SS2014"
+    old_bucket.save
+
+    #Add courses to bucket
+    user.student.course_buckets.first.courses = courses.take(rand(8) + 1)
+
+    #Add courses as mentor
+    user.mentor.courses = courses.take(rand(3) + 1)
+  end
 end
