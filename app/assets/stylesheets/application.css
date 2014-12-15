@@ -11,5 +11,21 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require font-awesome
  *= require_self
  */
+.fa-2 {
+  font-size: 120%;
+}
+.fa-3 {
+  font-size: 150%;
+}
+.fa-4 {
+  font-size: 180%;
+}
+.fa-5 {
+  font-size: 200%;
+}
+.ajax_form {
+  margin: 5px
+}

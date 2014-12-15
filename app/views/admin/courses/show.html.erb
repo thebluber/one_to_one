@@ -1,7 +1,10 @@
 <h1><%= link_to @course.title, edit_admin_course_path(@course) %></h1>
 <div class="col-xs-9 col-md-6">
   <div class="panel panel-default">
-    <div class="panel-heading">Mentoren</div>
+    <div class="panel-heading">
+      <%= icon("users", 2) %>
+      Mentoren
+    </div>
     <% if @mentors.count > 0 %>
       <ul class="list-group">
         <% @mentors.each do |mentor| %>
@@ -22,7 +25,10 @@
 </div>
 <div class="col-xs-9 col-md-6">
   <div class="panel panel-default">
-    <div class="panel-heading">Studenten</div>
+    <div class="panel-heading">
+      <%= icon("users", 2) %>
+      Studenten
+    </div>
     <% if @students.count > 0 %>
       <ul class="list-group">
         <% @students.each do |student| %>

@@ -3,4 +3,5 @@ $("#courses").append("<%= escape_javascript(render(partial: @course, locals: {
   course: @course,
   url: make_bucketship_course_bucket_path(@bucket),
   method: :post,
+  icon_type: 'plus-square',
   button: 'Hinzufügen'})) %>");

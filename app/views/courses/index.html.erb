@@ -1,20 +1,33 @@
-<div id="user_courses">
-<h1>Ich biete folgende Kurse an:</h1>
-<% @user_courses.each do |course| %>
-  <%= render partial: "course", locals: {
-    course: course,
-    url: destroy_mentorship_course_path(course),
-    method: :delete,
-    button: "Nicht mehr anbieten" } %>
-<% end %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= icon(:list, 2) %>
+    Ich biete folgende Kurse an:
+  </div>
+  <div id="user_courses" class="panel-body">
+      <% @user_courses.each do |course| %>
+        <%= render partial: "course", locals: {
+          course: course,
+          url: destroy_mentorship_course_path(course),
+          method: :delete,
+          icon_type: "minus-square",
+          button: "Nicht mehr anbieten" } %>
+      <% end %>
+  </div>
 </div>
-<div id="other_courses">
-<h1>Andere Kurse</h1>
-<% @other_courses.each do |course| %>
-  <%= render partial: "course", locals: {
-    course: course,
-    url: make_mentorship_course_path(course),
-    method: :post,
-    button: "Anbieten" } %>
-<% end %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= icon(:list, 2) %>
+    Andere Kurse
+  </div>
+  <div id="other_courses" class="panel-body">
+    <% @other_courses.each do |course| %>
+      <%= render partial: "course", locals: {
+        course: course,
+        url: make_mentorship_course_path(course),
+        method: :post,
+        icon_type: "plus-square",
+        button: "Anbieten" } %>
+    <% end %>
+  </div>
 </div>

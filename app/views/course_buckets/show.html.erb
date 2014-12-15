@@ -1,20 +1,32 @@
-<div id="course_bucket">
-  <h1>Meine Kursliste <%= @bucket.semester %></h1>
-  <% @bucket.courses.each do |course| %>
-    <%= render partial: "course", locals: {
-      course: course,
-      url: destroy_bucketship_course_bucket_path(@bucket.id),
-      method: :delete,
-      button: "Entfernen" } %>
-  <% end %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= icon("list", 2) %>
+    Meine Kursliste <%= @bucket.semester %>
+  </div>
+  <div id="course_bucket" class="panel-body">
+    <% @bucket.courses.each do |course| %>
+      <%= render partial: "course", locals: {
+        course: course,
+        url: destroy_bucketship_course_bucket_path(@bucket.id),
+        method: :delete,
+        icon_type: "minus-square",
+        button: "Entfernen" } %>
+    <% end %>
+  </div>
 </div>
-<div id="courses">
-  <h1>Kursangebot</h1>
-  <% @courses.each do |course| %>
-    <%= render partial: "course", locals: {
-      course: course,
-      url: make_bucketship_course_bucket_path(@bucket.id),
-      method: :post,
-      button: "Hinzufügen" } %>
-  <% end %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= icon("list", 2) %>
+    Kursangebot
+  </div>
+  <div id="courses" class="panel-body">
+    <% @courses.each do |course| %>
+      <%= render partial: "course", locals: {
+        course: course,
+        url: make_bucketship_course_bucket_path(@bucket.id),
+        method: :post,
+        icon_type: "plus-square",
+        button: "Hinzufügen" } %>
+    <% end %>
+  </div>
 </div>

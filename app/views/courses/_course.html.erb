@@ -6,8 +6,12 @@
     <% end %>
   </div>
   <div class="col-xs-6 col-md-4">
-    <%= form_for course, url: url, method: method, remote: true, html: { class: "ajax_form" } do |f| %>
-      <%= f.submit button, class: "btn" %>
+    <%= form_for :course_bucket, url: url, method: method, remote: true, html: { class: "ajax_form" } do |f| %>
+      <%= f.hidden_field :course, value: course.id %>
+      <button type="submit" class="btn btn-primary btn-xs">
+        <%= icon(icon_type, 2) %>
+        <%= button %>
+      </button>
     <% end %>
   </div>
 </div>

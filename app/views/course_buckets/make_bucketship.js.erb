@@ -3,4 +3,5 @@ $("#course_bucket").append("<%= escape_javascript(render(partial: @course, local
   course: @course,
   url: destroy_bucketship_course_bucket_path(@bucket),
   method: :delete,
+  icon_type: 'minus-square',
   button: 'Entfernen'})) %>");

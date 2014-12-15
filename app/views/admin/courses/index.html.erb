@@ -1,12 +1,22 @@
-<div id="active">
-  <h1>Aktuelle Kurse</h1>
-  <% @active_courses.each do |course| %>
-    <%= render partial: "course", locals: { course: course, button: "Deaktivieren" } %>
-  <% end %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= icon(:list, 2) %>
+    Aktuelle Kurse
+  </div>
+  <div id="active" class="panel-body">
+    <% @active_courses.each do |course| %>
+      <%= render partial: "course", locals: { course: course, button: "Deaktivieren", icon_type: "minus-square" } %>
+    <% end %>
+  </div>
 </div>
-<div id="inactive">
-  <h1>Andere Kurse</h1>
-  <% @inactive_courses.each do |course| %>
-    <%= render partial: "course", locals: { course: course, button: "Aktivieren" } %>
-  <% end %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= icon(:list, 2) %>
+    Andere Kurse
+  </div>
+  <div id="inactive" class="panel-body">
+    <% @inactive_courses.each do |course| %>
+      <%= render partial: "course", locals: { course: course, button: "Aktivieren", icon_type: "plus-square" } %>
+    <% end %>
+  </div>
 </div>
