@@ -42,6 +42,7 @@ end
 
 gem 'sorcery'
 
+gem 'therubyracer'
 gem 'twitter-bootstrap-rails'
 gem 'font-awesome-less'
 # Use ActiveModel has_secure_password
