@@ -5,7 +5,7 @@ RSpec.describe CourseBucketsController, :type => :controller do
     @user = create(:user)
     login_user @user
   end
-  let(:bucket){ @user.student.course_buckets.last }
+  let(:bucket){ @user.student.new_course_bucket create(:semester) }
 
   describe "GET show" do
     it "returns http success" do
