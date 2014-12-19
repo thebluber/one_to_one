@@ -1,4 +1,9 @@
 FactoryGirl.define do
+  factory :schedule do
+    ws 9
+    ss 4
+  end
+
   factory :user do
     first_name "John"
     last_name  "Doe"
