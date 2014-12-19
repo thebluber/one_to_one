@@ -14,13 +14,19 @@ RSpec.describe Course, :type => :model do
   end
 
   describe "students" do
+    let(:old_semester){ create(:semester, start: '2014-4-10') }
+    let(:current_semester){ create(:semester, start: '2014-10-10') }
     let(:user1){ create(:user) }
     let(:user2){ create(:user) }
     let(:course){ create(:active_course) }
     before do
-      user1.student.course_buckets.create
+      user1.student.new_course_bucket old_semester
+      user1.student.new_course_bucket current_semester
+      user2.student.new_course_bucket current_semester
+
       user1.student.course_buckets.map{|bucket| bucket.courses << course }
       user2.student.course_buckets.map{|bucket| bucket.courses << course }
+
       course.reload
     end
     it "should return all students assigned to course" do
