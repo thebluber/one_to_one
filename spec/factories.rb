@@ -1,4 +1,8 @@
 FactoryGirl.define do
+  factory :semester do
+    start "2014-10-19"
+  end
+
   factory :user do
     first_name "John"
     last_name  "Doe"
@@ -22,6 +26,7 @@ FactoryGirl.define do
 
   factory :course_bucket do
     student
+    semester
   end
 
   factory :active_course, class: Course do

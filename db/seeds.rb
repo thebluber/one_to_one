@@ -7,6 +7,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 if Rails.env == "development"
+  last_semester = Semester.create(start: '2014-4-10')
+  current_semester = Semester.create(start: '2014-10-10')
+
   users = [ User.create(first_name: 'John', last_name: 'Doe', email: 'john.doe@student.uni-tuebingen.de', password: '123456'),
             User.create(first_name: 'Jane', last_name: 'Doe', email: 'jane.doe@student.uni-tuebingen.de', password: '123456'),
             User.create(first_name: 'Harry', last_name: 'Potter', email: 'harry.potter@student.uni-tuebingen.de', password: '123456') ]
@@ -29,9 +32,9 @@ if Rails.env == "development"
 
   users.first.make_admin!
   users.map do |user|
-    old_bucket = user.student.course_buckets.create
-    old_bucket.semester = "SS2014"
-    old_bucket.save
+    user.student.new_course_bucket(last_semester)
+    user.student.new_course_bucket(current_semester)
+
 
     #Add courses to bucket
     user.student.course_buckets.first.courses = courses.take(rand(8) + 1)
