@@ -1,7 +1,7 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <%= icon("list", 2) %>
-    Meine Kursliste <%= @bucket.semester %>
+    Meine Kursliste <%= stringify_semester @bucket.semester %>
   </div>
   <div id="course_bucket" class="panel-body">
     <% @bucket.courses.each do |course| %>

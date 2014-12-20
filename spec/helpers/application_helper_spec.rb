@@ -14,4 +14,13 @@ RSpec.describe ApplicationHelper, :type => :helper do
       expect(helper.icon("users", 3)).to eql icon
     end
   end
+
+  describe "#stringify_semester" do
+    it "should stringify semester start dates to WS SS format" do
+      ss = create(:semester, start: "2014-4-10")
+      ws = create(:semester, start: "2014-10-10")
+      expect(helper.stringify_semester ss).to eql "SS2014"
+      expect(helper.stringify_semester ws).to eql "WS2014/2015"
+    end
+  end
 end

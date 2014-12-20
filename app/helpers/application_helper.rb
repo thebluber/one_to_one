@@ -12,4 +12,12 @@ module ApplicationHelper
   def icon name, size
     "<i class='fa fa-#{name} fa-#{size}'></i>".html_safe
   end
+
+  def stringify_semester semester
+    if semester.start.month <= 6
+      "SS#{semester.start.year}"
+    else
+      "WS#{semester.start.year}/#{semester.start.year + 1}"
+    end
+  end
 end

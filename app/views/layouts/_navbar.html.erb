@@ -6,7 +6,7 @@
       <%= menu_item "Mentor", courses_path %>
       <%= drop_down "Student" do %>
         <% current_user.student.course_buckets.each do |bucket| %>
-          <%= menu_item bucket.semester, course_bucket_path(bucket.id) %>
+          <%= menu_item stringify_semester(bucket.semester), course_bucket_path(bucket.id) %>
         <% end %>
       <% end %>
       <% if current_user.admin? %>
