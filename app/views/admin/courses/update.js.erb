@@ -1,6 +1,6 @@
 $("#<%= @course.id %>").remove();
 <% if @course.active %>
-  $("#active").append("<%= escape_javascript(render(partial: @course, locals: {course: @course, button: 'Deaktivieren'})) %>");
+  $("#active").append("<%= escape_javascript(render(partial: @course, locals: {course: @course, button: 'Deaktivieren', icon_type: 'minus-square'})) %>");
 <% else %>
-  $("#inactive").append("<%= escape_javascript(render(partial: @course, locals: {course: @course, button: 'Aktivieren'})) %>");
+  $("#inactive").append("<%= escape_javascript(render(partial: @course, locals: {course: @course, button: 'Aktivieren', icon_type: 'plus-square'})) %>");
 <% end %>
