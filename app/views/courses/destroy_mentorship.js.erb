@@ -2,5 +2,6 @@ $("#<%= @course.id %>").remove();
 $("#other_courses").append("<%= escape_javascript(render(partial: @course, locals: {
   course: @course,
   url: make_mentorship_course_path(@course),
+  icon_type: 'plus-square',
   method: :post,
   button: 'Anbieten'})) %>");
